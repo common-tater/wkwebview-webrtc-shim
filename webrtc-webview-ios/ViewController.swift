@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    var url = NSURL(string:"http://localhost:8080/listen/channels/-JjzTTFcz01JlWZWtrnU")
+    var url = NSURL(string:"http://localhost:8080")
     var req = NSURLRequest(URL:url!)
     self.webView!.loadRequest(req)
   }
