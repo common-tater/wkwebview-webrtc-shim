@@ -10,18 +10,13 @@
 #define webrtc_webview_ios_wkwebview_webrtc_polyfill_h
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 #import <WebKit/WebKit.h>
+
 #import "RTCPeerConnection.h"
-#import "RTCPeerConnectionFactory.h"
-#import "RTCPeerConnectionDelegate.h"
-#import "RTCICEServer.h"
-#import "RTCMediaConstraints.h"
 #import "RTCSessionDescription.h"
-#import "RTCSessionDescriptionDelegate.h"
 #import "RTCIceCandidate.h"
-#import "RTCPair.h"
 #import "RTCDataChannel.h"
+#import "RTCSessionDescriptionDelegate.h"
 
 // add jsid as associated object
 @interface RTCPeerConnection (JavaScript)
@@ -43,9 +38,10 @@
 @property (nonatomic, copy) NSString *jsid;
 @end
 
+// RTCSessionDescriptionDelegate to wrap js callbacks
+
 @class WKWebViewWebRTCPolyfill;
 
-// RTCSessionDescriptionDelegate to wrap js callbacks
 @interface JSSDCallbackWrapper : NSObject <RTCSessionDescriptionDelegate> {
   WKWebViewWebRTCPolyfill *polyfill;
   NSString *operationName;
@@ -55,6 +51,9 @@
 @end
 
 // the polyfill
+
+@class RTCPeerConnectionFactory;
+
 @interface WKWebViewWebRTCPolyfill : NSObject <WKScriptMessageHandler, RTCPeerConnectionDelegate, RTCDataChannelDelegate> {
   NSArray *methods;
   RTCPeerConnectionFactory *factory;
