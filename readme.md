@@ -10,4 +10,10 @@ Build libWebRTC.a and get it to `Framworks/WebRTC/libWebRTC.a`. See:
 * https://github.com/common-tater/webrtc-build-ios
 
 ## Notes
-Just a prototype for the moment!
+Just a prototype for the moment!  
+
+[simple-peer](https://github.com/feross/simple-peer)'s test suite passes and [instant.io](https://instant.io/) (aka webtorrent) works.
+
+#### TODO
+* Not sure where but something is doing real work in the main thread. This can block the UI (albeit very briefly) but could probably be easily fixed by profiling the app and applying `dispatch_async` where necessary.
+* There are some leaks on both the JavaScript and native sides - connection lifecycles need to be a bit more carefully observed to completely eliminate these.
