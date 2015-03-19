@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    var url = NSURL(string:"http://localhost:8080")
+    var url = NSURL(string:"http://instant.io")
     var req = NSURLRequest(URL:url!)
     self.webView!.loadRequest(req)
   }
