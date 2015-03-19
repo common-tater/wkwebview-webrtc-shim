@@ -11,7 +11,7 @@
     descriptions: {},
     candidates: {},
     channels: {},
-    base64ToBinary: base64ToBinary
+    base64ToData: base64ToData
   }
 
   var callbacks = exports._WKWebViewWebRTCPolyfill.callbacks
@@ -20,16 +20,28 @@
   var candidates = exports._WKWebViewWebRTCPolyfill.candidates
   var channels = exports._WKWebViewWebRTCPolyfill.channels
 
+  RTCPeerConnection._executeCallback = function (id, cb1, cb2, getArgs) {
+    var connection = connections[id]
+
+    if (!connection) {
+      delete callbacks[cb1]
+      delete callbacks[cb2]
+      return
+    }
+
+    callbacks[cb1].apply(null, getArgs && getArgs.call(connection))
+  }
+
   function RTCPeerConnection (config, constraints) {
     this._id = genUniqueId(connections)
+    this.iceConnectionState = 'new'
+    this.iceGatheringState = 'new'
     connections[this._id] = this
 
     window.webkit.messageHandlers.RTCPeerConnection_new.postMessage({
       id: this._id,
       constraints: constraints,
-      iceServers: config.iceServers.map(function (server) {
-        return server.url
-      })
+      iceServers: config.iceServers
     })
   }
 
@@ -68,13 +80,31 @@
 
   RTCPeerConnection.prototype.createDataChannel =  function (label, optional) {
     var id = genUniqueId(channels)
-    var channel = new RTCDataChannel(id)
+    var channel = new RTCDataChannel(label, optional, id)
 
     window.webkit.messageHandlers.RTCPeerConnection_createDataChannel.postMessage({
       id: this._id,
       channel: channel._id,
       label: label,
       optional: optional
+    })
+
+    return channel
+  }
+
+  RTCPeerConnection.prototype.close =  function () {
+    delete connections[this._id]
+
+    if (this.localDescription) {
+      delete descriptions[this.localDescription._id]
+    }
+
+    if (this.remoteDescription) {
+      delete descriptions[this.remoteDescription._id]
+    }
+
+    window.webkit.messageHandlers.RTCPeerConnection_close.postMessage({
+      id: this._id
     })
   }
 
@@ -107,15 +137,27 @@
     })
   }
 
-  function RTCDataChannel (id) {
+  function RTCDataChannel (label, optional, id) {
+    this.label = label
     this._id = id
     channels[id] = this
   }
 
   RTCDataChannel.prototype.send = function (data) {
+    var encoded = dataToBase64(data)
+
     window.webkit.messageHandlers.RTCDataChannel_send.postMessage({
       id: this._id,
-      data: binaryToBase64(data)
+      data: encoded.data,
+      binary: encoded.binary
+    })
+  }
+
+  RTCDataChannel.prototype.close = function (data) {
+    delete channels[this._id]
+
+    window.webkit.messageHandlers.RTCDataChannel_close.postMessage({
+      id: this._id
     })
   }
 
@@ -132,7 +174,6 @@
       onerror(err)
     })
 
-    console.log('posting', name)
     window.webkit.messageHandlers[name].postMessage(params)
   }
 
@@ -160,7 +201,7 @@
     return Math.random().toString().slice(2)
   }
 
-  function base64ToBinary (string) {
+  function base64ToData (string) {
     var binaryString =  window.atob(string)
     var len = binaryString.length
     var bytes = new Uint8Array(len)
@@ -172,8 +213,32 @@
     return bytes.buffer
   }
 
-  function binaryToBase64 (buffer) {
-    return window.btoa(String.fromCharCode.apply(null, new Uint8Array(buffer)))
+  function dataToBase64 (data) {
+    var binary = false
+
+    if (data instanceof ArrayBuffer) {
+      data = String.fromCharCode.apply(null, new Uint8Array(data))
+      binary = true
+    } else if (isTypedArray(data)) {
+      data = String.fromCharCode.apply(null, data)
+      binary = true
+    }
+
+    return {
+      data: window.btoa(data),
+      binary: binary
+    }
+  }
+
+  function isTypedArray (obj) {
+    return obj instanceof Int8Array
+        || obj instanceof Int16Array
+        || obj instanceof Int32Array
+        || obj instanceof Uint8Array
+        || obj instanceof Uint16Array
+        || obj instanceof Uint32Array
+        || obj instanceof Float32Array
+        || obj instanceof Float64Array
   }
 
 })(window)
