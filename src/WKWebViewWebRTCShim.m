@@ -1,14 +1,12 @@
 //
-//  wkwebview-webrtc-polyfill.m
-//  webrtc-webview-ios
+//  WKWebViewWebRTCShim.m
+//  wkwebview-webrtc-shim
 //
 //  Created by Jesse Tane on 3/16/15.
 //  Copyright (c) 2015 Common Tater. All rights reserved.
 //
 
-#import "wkwebview-webrtc-polyfill.h"
-
-#import <objc/runtime.h>
+#import "WKWebViewWebRTCShim.h"
 
 #import "RTCPeerConnectionFactory.h"
 #import "RTCPeerConnectionDelegate.h"
@@ -16,154 +14,7 @@
 #import "RTCMediaConstraints.h"
 #import "RTCPair.h"
 
-#pragma mark jsid
-
-// add jsid to RTCPeerConnection
-@implementation RTCPeerConnection (JavaScript)
-@dynamic jsid;
-- (void)setJsid:(NSString *)_jsid {
-  objc_setAssociatedObject(self, @selector(jsid), _jsid, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (id)jsid {
-  return objc_getAssociatedObject(self, @selector(jsid));
-}
-@end
-
-// add jsid to RTCSessionDescription
-@implementation RTCSessionDescription (JavaScript)
-@dynamic jsid;
-- (void)setJsid:(NSString *)_jsid {
-  objc_setAssociatedObject(self, @selector(jsid), _jsid, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (id)jsid {
-  return objc_getAssociatedObject(self, @selector(jsid));
-}
-@end
-
-// add jsid to RTCICECandidate
-@implementation RTCICECandidate (JavaScript)
-@dynamic jsid;
-- (void)setJsid:(NSString *)_jsid {
-  objc_setAssociatedObject(self, @selector(jsid), _jsid, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (id)jsid {
-  return objc_getAssociatedObject(self, @selector(jsid));
-}
-@end
-
-// add jsid to RTCDataChannel
-@implementation RTCDataChannel (JavaScript)
-@dynamic jsid;
-- (void)setJsid:(NSString *)_jsid {
-  objc_setAssociatedObject(self, @selector(jsid), _jsid, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-- (id)jsid {
-  return objc_getAssociatedObject(self, @selector(jsid));
-}
-@end
-
-#pragma mark JSSDCallbackWrapper
-
-@implementation JSSDCallbackWrapper
-
-- (id)initWithPolyfill:(WKWebViewWebRTCPolyfill*)fill
-             operation:(NSString*)name
-             onSuccess:(NSString*)success
-               onError:(NSString*)error {
-  if (self = [super init]) {
-    polyfill = fill;
-    operationName = name;
-    onSuccess = success;
-    onError = error;
-  }
-  return self;
-}
-
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error {
-  NSString *js = @"";
-
-  if (error) {
-    js = [NSString stringWithFormat: @"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () { return [ '%@' ] })",
-          peerConnection.jsid,
-          onError,
-          onSuccess,
-          error.localizedDescription];
-  } else {
-    NSString *sdpid = [polyfill genUniqueId:polyfill.descriptions];
-    NSString *propertyName = nil;
-
-    if ([operationName isEqualToString:@"createOffer"]) {
-      propertyName = @"offer";
-    } else if ([operationName isEqualToString:@"createAnswer"]) {
-      propertyName = @"answer";
-    }
-
-    sdp.jsid = sdpid;
-    polyfill.descriptions[sdpid] = sdp;
-
-    js = [NSString stringWithFormat:@"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () { return [ new RTCSessionDescription({ type: '%@', sdp: '%@' }, '%@') ] })",
-          peerConnection.jsid,
-          onSuccess,
-          onError,
-          sdp.type,
-          [polyfill escapeForJS:sdp.description],
-          sdpid];
-  }
-
-#ifdef DEBUG
-  NSLog(@"RTCPeerConnection_on%@: %@", operationName, js);
-#endif
-
-  [polyfill.webView evaluateJavaScript:js completionHandler:nil];
-}
-
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
-  NSString *js = nil;
-
-  if (error) {
-    js = [NSString stringWithFormat: @"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () { return [ '%@' ] })",
-          peerConnection.jsid,
-          onError,
-          onSuccess,
-          error.localizedDescription];
-  } else {
-    RTCSessionDescription *sdp = nil;
-    NSString *sdpid = [polyfill genUniqueId:polyfill.descriptions];
-    NSString *propertyName = nil;
-
-    if ([operationName isEqualToString:@"setLocalDescription"]) {
-      propertyName = @"localDescription";
-      sdp = peerConnection.localDescription;
-    } else if ([operationName isEqualToString:@"setRemoteDescription"]) {
-      propertyName = @"remoteDescription";
-      sdp = peerConnection.remoteDescription;
-    }
-    
-    sdp.jsid = sdpid;
-    polyfill.descriptions[sdpid] = sdp;
-
-    js = [NSString stringWithFormat:@"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () { this.%@ = new RTCSessionDescription({ type: '%@', sdp: '%@' }, '%@') })",
-          peerConnection.jsid,
-          onSuccess,
-          onError,
-          propertyName,
-          sdp.type,
-          [polyfill escapeForJS:sdp.description],
-          sdpid];
-  }
-
-#ifdef DEBUG
-  NSLog(@"RTCPeerConnection_on%@: %@", operationName, js);
-#endif
-
-  [polyfill.webView evaluateJavaScript:js completionHandler:nil];
-}
-
-@end
-
-#pragma mark WKWebViewWebRTCPolyfill
-
-@implementation WKWebViewWebRTCPolyfill
+@implementation WKWebViewWebRTCShim
 
 @synthesize webView,
             connections,
@@ -172,13 +23,13 @@
             channels;
 
 - (id)initWithWebView:(WKWebView*)view
-     contentController:(WKUserContentController *)controller {
+    contentController:(WKUserContentController *)controller {
   if (self = [super init]) {
-    NSString * path = [[NSBundle mainBundle].resourcePath stringByAppendingString:@"/wkwebview-webrtc-polyfill.js"];
-    NSString * bindingJs = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    WKUserScript * script = [[WKUserScript alloc] initWithSource:bindingJs injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:true];
-    [controller addUserScript:script];
-
+    webView = view;
+    connections = [[NSMutableDictionary alloc] init];
+    descriptions = [[NSMutableDictionary alloc] init];
+    candidates = [[NSMutableDictionary alloc] init];
+    channels = [[NSMutableDictionary alloc] init];
     methods = @[
       @"RTCPeerConnection_new",
       @"RTCPeerConnection_setRemoteDescription",
@@ -187,6 +38,7 @@
       @"RTCPeerConnection_createAnswer",
       @"RTCPeerConnection_addIceCandidate",
       @"RTCPeerConnection_createDataChannel",
+      @"RTCPeerConnection_getStats",
       @"RTCPeerConnection_close",
       @"RTCSessionDescription_new",
       @"RTCIceCandidate_new",
@@ -198,14 +50,13 @@
       [controller addScriptMessageHandler:self name:method];
     }
 
+    NSString * path = [[NSBundle mainBundle].resourcePath stringByAppendingString:@"/WKWebViewWebRTCShim.js"];
+    NSString * bindingJs = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    WKUserScript * script = [[WKUserScript alloc] initWithSource:bindingJs injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:true];
+    [controller addUserScript:script];
+
     [RTCPeerConnectionFactory initializeSSL];
     factory = [[RTCPeerConnectionFactory alloc] init];
-
-    webView = view;
-    connections = [[NSMutableDictionary alloc] init];
-    descriptions = [[NSMutableDictionary alloc] init];
-    candidates = [[NSMutableDictionary alloc] init];
-    channels = [[NSMutableDictionary alloc] init];
   }
 
   return self;
@@ -225,19 +76,23 @@
     }
   }
 
-  if (name == nil) {
+  if (!name) {
 
-#ifdef DEBUG
-    NSLog(@"unrecognized method");
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
+  NSLog(@"unrecognized method");
 #endif
 
     return;
   }
-
+  
+  // ridiculous hoop jumping to call method by name
   SEL selector = NSSelectorFromString(name);
   IMP imp = [self methodForSelector:selector];
   void (*func)(id, SEL, NSDictionary *) = (void *)imp;
   func(self, selector, params);
+  
+  // lame hack to fix over-retained message.body
+  CFRelease((__bridge CFTypeRef) params);
 }
 
 - (RTCMediaConstraints*)defaultConstraints {
@@ -249,7 +104,7 @@
 
 - (void)RTCPeerConnection_new:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_new: %@", params);
 #endif
 
@@ -288,27 +143,27 @@
 
 - (void)RTCPeerConnection_createOffer:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_createOffer: %@", params);
 #endif
 
   RTCPeerConnection *connection = connections[params[@"id"]];
-  JSSDCallbackWrapper *wrapper = [[JSSDCallbackWrapper alloc] initWithPolyfill:self
+  WKWebViewWebRTCShimSessionDescriptionCallbackWrapper *wrapper = [[WKWebViewWebRTCShimSessionDescriptionCallbackWrapper alloc] initWithShim:self
                                                                      operation:@"createOffer"
                                                                      onSuccess:params[@"onsuccess"]
                                                                        onError:params[@"onerror"]];
-  
+
   [connection createOfferWithDelegate:wrapper constraints:[self defaultConstraints]];
 }
 
 - (void)RTCPeerConnection_createAnswer:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_createAnswer: %@", params);
 #endif
 
   RTCPeerConnection *connection = connections[params[@"id"]];
-  JSSDCallbackWrapper *wrapper = [[JSSDCallbackWrapper alloc] initWithPolyfill:self
+  WKWebViewWebRTCShimSessionDescriptionCallbackWrapper *wrapper = [[WKWebViewWebRTCShimSessionDescriptionCallbackWrapper alloc] initWithShim:self
                                                                      operation:@"createAnswer"
                                                                      onSuccess:params[@"onsuccess"]
                                                                        onError:params[@"onerror"]];
@@ -318,13 +173,13 @@
 
 - (void)RTCPeerConnection_setLocalDescription:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_setLocalDescription: %@", params);
 #endif
 
   RTCPeerConnection *connection = connections[params[@"id"]];
   RTCSessionDescription *description = descriptions[params[@"description"]];
-  JSSDCallbackWrapper *wrapper = [[JSSDCallbackWrapper alloc] initWithPolyfill:self
+  WKWebViewWebRTCShimSessionDescriptionCallbackWrapper *wrapper = [[WKWebViewWebRTCShimSessionDescriptionCallbackWrapper alloc] initWithShim:self
                                                                      operation:@"setLocalDescription"
                                                                      onSuccess:params[@"onsuccess"]
                                                                        onError:params[@"onerror"]];
@@ -334,13 +189,13 @@
 
 - (void)RTCPeerConnection_setRemoteDescription:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_setRemoteDescription: %@", params);
 #endif
 
   RTCPeerConnection *connection = connections[params[@"id"]];
   RTCSessionDescription *description = descriptions[params[@"description"]];
-  JSSDCallbackWrapper *wrapper = [[JSSDCallbackWrapper alloc] initWithPolyfill:self
+  WKWebViewWebRTCShimSessionDescriptionCallbackWrapper *wrapper = [[WKWebViewWebRTCShimSessionDescriptionCallbackWrapper alloc] initWithShim:self
                                                                      operation:@"setRemoteDescription"
                                                                      onSuccess:params[@"onsuccess"]
                                                                        onError:params[@"onerror"]];
@@ -350,7 +205,7 @@
 
 - (void)RTCPeerConnection_addIceCandidate:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_addIceCandidate: %@", params);
 #endif
 
@@ -369,7 +224,7 @@
 
 - (void)RTCPeerConnection_createDataChannel:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_createDataChannel: %@", params);
 #endif
 
@@ -382,9 +237,19 @@
   channel.delegate = self;
 }
 
+- (void)RTCPeerConnection_getStats:(NSDictionary *)params {
+  RTCPeerConnection *connection = connections[params[@"id"]];
+
+  WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper *callbackWrapper = [[WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper alloc] initWithShim:self onSuccess:params[@"onsuccess"] onError:params[@"onerror"]];
+
+  [connection getStatsWithDelegate:callbackWrapper
+                  mediaStreamTrack:nil
+                  statsOutputLevel:RTCStatsOutputLevelStandard];
+}
+
 - (void)RTCPeerConnection_close:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_close: %@", params);
 #endif
 
@@ -429,16 +294,16 @@
       break;
     default:
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
       NSLog(@"RTCPeerConnection_onsignalingstatechange - unrecognized state %u", stateChanged);
 #endif
       
       return;
   }
 
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { connection.signalingState = '%@'; var handler = connection.onsignalingstatechange; handler && handler(); }", peerConnection.jsid, state];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { connection.signalingState = '%@'; var handler = connection.onsignalingstatechange; handler && handler(); }", peerConnection.jsid, state];
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_onsignalingstatechange: %@", js);
 #endif
 
@@ -446,19 +311,19 @@
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream {
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { var handler = connection.onaddstream;  handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { var handler = connection.onaddstream;  handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
   
   [webView evaluateJavaScript:js completionHandler:nil];
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection removedStream:(RTCMediaStream *)stream {
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { var handler = connection.onremovestream; handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { var handler = connection.onremovestream; handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
   
   [webView evaluateJavaScript:js completionHandler:nil];
 }
 
 - (void)peerConnectionOnRenegotiationNeeded:(RTCPeerConnection *)peerConnection {
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { var handler = connection.onnegotiationneeded; handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { var handler = connection.onnegotiationneeded; handler && handler(new Error('ENOTIMPLEMENTED')); }", peerConnection.jsid];
 
   [webView evaluateJavaScript:js completionHandler:nil];
 }
@@ -490,16 +355,16 @@
       break;
     default:
       
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
       NSLog(@"RTCPeerConnection_oniceconnectionstatechange - unregognized state: %u", newState);
 #endif
 
       return;
   }
 
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { connection.iceConnectionState = '%@'; var handler = connection.oniceconnectionstatechange; handler && handler(); }", peerConnection.jsid, state];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { connection.iceConnectionState = '%@'; var handler = connection.oniceconnectionstatechange; handler && handler(); }", peerConnection.jsid, state];
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_oniceconnectionstatechange: %@", js);
 #endif
 
@@ -523,19 +388,19 @@
       break;
     default:
 
-#ifdef DEBUG
-      NSLog(@"RTCPeerConnection_onicegatheringstatechange - unregognized state: %u", newState);
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
+  NSLog(@"RTCPeerConnection_onicegatheringstatechange - unregognized state: %u", newState);
 #endif
 
-      return;
+    return;
   }
 
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { connection.iceGatheringState = '%@'; var handler = connection.onicegatheringstatechange; handler && handler(); %@ }",
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { connection.iceGatheringState = '%@'; var handler = connection.onicegatheringstatechange; handler && handler(); %@ }",
                   peerConnection.jsid,
                   state,
                   iceComplete];
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_onicegatheringstatechange: %@", js);
 #endif
 
@@ -547,7 +412,7 @@
   candidate.jsid = jsid;
   candidates[jsid] = candidate;
   
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@'];", peerConnection.jsid];
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@'];", peerConnection.jsid];
 
   if (peerConnection.localDescription) {
     NSString *localDescriptionUpdate = [self escapeForJS:peerConnection.localDescription.description];
@@ -560,7 +425,7 @@
         [self escapeForJS:candidate.sdp],
         jsid];
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_onicecandidate: %@", js);
 #endif
 
@@ -573,12 +438,12 @@
   channel.jsid = jsid;
   channel.delegate = self;
 
-  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCPolyfill.connections['%@']; if (connection) { var handler = connection.ondatachannel; if (handler) { handler({ channel: new RTCDataChannel('%@', null, '%@') }) }};",
+  NSString *js = [NSString stringWithFormat:@"var connection = window._WKWebViewWebRTCShim.connections['%@']; if (connection) { var handler = connection.ondatachannel; if (handler) { handler({ channel: new RTCDataChannel('%@', null, '%@') }) }};",
                   peerConnection.jsid,
                   channel.label,
                   channel.jsid];
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_ondatachannel: %@", js);
 #endif
 
@@ -608,14 +473,14 @@
       break;
     default:
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
       NSLog(@"RTCDataChannel_onstatechange - unregognized state: %u", channel.state);
 #endif
 
       return;
   }
 
-  NSString *js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCPolyfill.channels['%@']; if (channel) { channel.readyState = '%@' }",
+  NSString *js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCShim.channels['%@']; if (channel) { channel.readyState = '%@' }",
                   channel.jsid,
                   state];
 
@@ -623,7 +488,7 @@
     js = [js stringByAppendingFormat:@"if (channel) { var handler = channel.%@; handler && handler() };", event];
   }
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCDataChannel_onstatechange: %@", js);
 #endif
 
@@ -634,17 +499,17 @@
   NSString *js;
 
   if (buffer.isBinary) {
-    js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCPolyfill.channels['%@']; if (channel) { var handler = channel.onmessage; handler && handler({ data: window._WKWebViewWebRTCPolyfill.base64ToData('%@') }) };",
+    js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCShim.channels['%@']; if (channel) { var handler = channel.onmessage; handler && handler({ data: window._WKWebViewWebRTCShim.base64ToData('%@') }) };",
           channel.jsid,
           [buffer.data base64EncodedStringWithOptions:0]];
   } else {
-    js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCPolyfill.channels['%@']; if (channel) { var handler = channel.onmessage; handler && handler({ data: '%@' }) };",
+    js = [NSString stringWithFormat:@"var channel = window._WKWebViewWebRTCShim.channels['%@']; if (channel) { var handler = channel.onmessage; handler && handler({ data: '%@' }) };",
           channel.jsid,
           [[NSString alloc] initWithData:buffer.data encoding:NSUTF8StringEncoding]];
   }
 
-#ifdef DEBUG
-  NSLog(@"RTCDataChannel_onmessage: %ld", buffer.data.length);
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
+  NSLog(@"RTCDataChannel_onmessage: %ld", (unsigned long)buffer.data.length);
 #endif
 
   [webView evaluateJavaScript:js completionHandler:nil];
@@ -654,7 +519,7 @@
 
 - (void)RTCSessionDescription_new:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCSessionDescription_new: %@", params);
 #endif
 
@@ -673,7 +538,7 @@
 
 - (void)RTCIceCandidate_new:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCIceCandidate_new: %@", params);
 #endif
 
@@ -698,8 +563,8 @@
   BOOL isBinary = [params[@"binary"] boolValue];
   RTCDataBuffer *buffer = [[RTCDataBuffer alloc] initWithData:data isBinary:isBinary];
 
-#ifdef DEBUG
-  NSLog(@"RTCDataChannel_send: %ld", buffer.data.length);
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
+NSLog(@"RTCDataChannel_send: %ld", (unsigned long)buffer.data.length);
 #endif
 
   [channel sendData:buffer];
@@ -707,7 +572,7 @@
 
 - (void)RTCDataChannel_close:(NSDictionary *)params {
 
-#ifdef DEBUG
+#ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCDataChannel_close: %@", params);
 #endif
 

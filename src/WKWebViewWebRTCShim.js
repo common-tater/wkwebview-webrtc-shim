@@ -5,7 +5,7 @@
   exports.RTCIceCandidate = RTCIceCandidate
   exports.RTCDataChannel = RTCDataChannel
 
-  exports._WKWebViewWebRTCPolyfill = {
+  exports._WKWebViewWebRTCShim = {
     callbacks: {},
     connections: {},
     descriptions: {},
@@ -14,11 +14,11 @@
     base64ToData: base64ToData
   }
 
-  var callbacks = exports._WKWebViewWebRTCPolyfill.callbacks
-  var connections = exports._WKWebViewWebRTCPolyfill.connections
-  var descriptions = exports._WKWebViewWebRTCPolyfill.descriptions
-  var candidates = exports._WKWebViewWebRTCPolyfill.candidates
-  var channels = exports._WKWebViewWebRTCPolyfill.channels
+  var callbacks = exports._WKWebViewWebRTCShim.callbacks
+  var connections = exports._WKWebViewWebRTCShim.connections
+  var descriptions = exports._WKWebViewWebRTCShim.descriptions
+  var candidates = exports._WKWebViewWebRTCShim.candidates
+  var channels = exports._WKWebViewWebRTCShim.channels
 
   RTCPeerConnection._executeCallback = function (id, cb1, cb2, getArgs) {
     var connection = connections[id]
@@ -90,6 +90,21 @@
     })
 
     return channel
+  }
+
+  RTCPeerConnection.prototype.getStats =  function (cb) {
+    postMessage('RTCPeerConnection_getStats', {
+      id: this._id
+    }, function (reportsData) {
+      var reports = []
+
+      for (var i in reportsData) {
+        var reportData = reportsData[i]
+        var report = new RTCStatsReport()
+      }
+
+      cb({ result: function () { return reports } })
+    }, function () {})
   }
 
   RTCPeerConnection.prototype.close =  function () {
@@ -177,6 +192,10 @@
     window.webkit.messageHandlers[name].postMessage(params)
   }
 
+  function RTCStatsReport () {}
+
+  // ipc helpers
+
   function registerCallback (cb) {
     var id = genUniqueId(callbacks)
     callbacks[id] = cb
@@ -231,14 +250,7 @@
   }
 
   function isTypedArray (obj) {
-    return obj instanceof Int8Array
-        || obj instanceof Int16Array
-        || obj instanceof Int32Array
-        || obj instanceof Uint8Array
-        || obj instanceof Uint16Array
-        || obj instanceof Uint32Array
-        || obj instanceof Float32Array
-        || obj instanceof Float64Array
+    return obj && obj.buffer
   }
 
 })(window)

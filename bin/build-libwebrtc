@@ -1,0 +1,91 @@
+#!/bin/bash
+
+function build_iossim_x86_32() {
+  echo "-- building WebRTC for the iOS x86_32 simulator"
+  export GYP_GENERATORS="ninja"
+  export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=ios target_arch=ia32"
+  export GYP_GENERATOR_FLAGS="$GYP_GENERATOR_FLAGS output_dir=out_ios_x86_32"
+  export GYP_CROSSCOMPILE=1
+  pushd src
+  gclient runhooks
+  ninja -C out_ios_x86_32/Release-iphonesimulator iossim AppRTCDemo
+  popd
+}
+
+function build_iossim_x86_64() {
+  echo "-- building WebRTC for the iOS x86_64 simulator"
+  export GYP_GENERATORS="ninja"
+  export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=ios target_arch=x64 target_subarch=arm64"
+  export GYP_GENERATOR_FLAGS="$GYP_GENERATOR_FLAGS output_dir=out_ios_x86_64"
+  export GYP_CROSSCOMPILE=1
+  pushd src
+  gclient runhooks
+  ninja -C out_ios_x86_64/Release-iphonesimulator iossim AppRTCDemo
+  popd
+}
+ 
+function build_iosdevice_arm7() {
+  echo "-- building WebRTC for iOS devices"
+  export GYP_GENERATORS="ninja"
+  export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=ios target_arch=arm"
+  export GYP_GENERATOR_FLAGS="$GYP_GENERATOR_FLAGS output_dir=out_ios_arm7"
+  export GYP_CROSSCOMPILE=1
+  pushd src
+  gclient runhooks
+  ninja -C out_ios_arm7/Release-iphoneos AppRTCDemo
+  popd
+}
+
+function build_iosdevice_arm64() {
+  echo "-- building WebRTC for iOS arm64 devices"
+  export GYP_GENERATORS="ninja"
+  export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=ios target_arch=arm64 target_subarch=arm64"
+  export GYP_GENERATOR_FLAGS="$GYP_GENERATOR_FLAGS output_dir=out_ios_arm64"
+  export GYP_CROSSCOMPILE=1
+  pushd src
+  gclient runhooks
+  ninja -C out_ios_arm64/Release-iphoneos AppRTCDemo
+  popd
+}
+
+function build_all() {
+  build_iossim_x86_32 && build_iossim_x86_64 && build_iosdevice_arm7 && build_iosdevice_arm64 && combine_libs
+}
+
+function combine_libs() {
+  echo "-- combining libraries"
+    
+  libtool -static -o src/out_ios_x86_32/Release-iphonesimulator/libWebRTC-sim.a src/out_ios_x86_32/Release-iphonesimulator/*.a
+  strip -S -x -o src/out_ios_x86_32/Release-iphonesimulator/libWebRTC-sim-min.a -r src/out_ios_x86_32/Release-iphonesimulator/libWebRTC-sim.a
+
+  libtool -static -o src/out_ios_x86_64/Release-iphonesimulator/libWebRTC-sim.a src/out_ios_x86_64/Release-iphonesimulator/*.a
+  strip -S -x -o src/out_ios_x86_64/Release-iphonesimulator/libWebRTC-sim-min.a -r src/out_ios_x86_64/Release-iphonesimulator/libWebRTC-sim.a
+
+  libtool -static -o src/out_ios_arm7/Release-iphoneos/libWebRTC-ios.a src/out_ios_arm7/Release-iphoneos/*.a
+  strip -S -x -o src/out_ios_arm7/Release-iphoneos/libWebRTC-ios-min.a -r src/out_ios_arm7/Release-iphoneos/libWebRTC-ios.a
+
+  libtool -static -o src/out_ios_arm64/Release-iphoneos/libWebRTC-ios.a src/out_ios_arm64/Release-iphoneos/*.a
+  strip -S -x -o src/out_ios_arm64/Release-iphoneos/libWebRTC-ios-min.a -r src/out_ios_arm64/Release-iphoneos/libWebRTC-ios.a
+
+  lipo -create\
+    src/out_ios_x86_32/Release-iphonesimulator/libWebRTC-sim-min.a\
+    src/out_ios_x86_64/Release-iphonesimulator/libWebRTC-sim-min.a\
+    src/out_ios_arm7/Release-iphoneos/libWebRTC-ios-min.a\
+    src/out_ios_arm64/Release-iphoneos/libWebRTC-ios-min.a\
+      -output libWebRTC.a
+  echo "The public headers are located in ./src/talk/app/webrtc/objc/public/*.h"
+}
+
+function run_simulator() {
+  echo "-- running webrtc appdemo on iOS simulator"
+  src/out_ios/Release-iphonesimulator/iossim src/out_ios/Release-iphonesimulator/AppRTCDemo.app
+}
+
+function run_on_device() {
+  echo "-- launching on device"
+  ideviceinstaller -i src/out_ios/Release-iphoneos/AppRTCDemo.app
+  echo "-- launch complete"
+}
+
+# Run the function specified by the first parameter on the command line
+$@
