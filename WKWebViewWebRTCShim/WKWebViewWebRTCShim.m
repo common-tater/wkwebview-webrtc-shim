@@ -121,11 +121,6 @@
     username = server[@"username"];
     password = server[@"credential"];
 
-    NSRange range = [url rangeOfString:@"turn:"];
-    if (range.location != NSNotFound && range.location == 0) {
-      url = [url substringFromIndex:5];
-    }
-
     RTCICEServer *iceServer = [[RTCICEServer alloc] initWithURI:[NSURL URLWithString:url]
                                                        username:username ? username : @""
                                                        password:password ? password : @""];
