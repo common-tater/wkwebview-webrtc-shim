@@ -1,0 +1,14 @@
+{
+  "name": "wkwebview-webrtc-shim",
+  "version": "1.0.0",
+  "description": "RTCPeerConnection and RTCDataChannel shim for iOS",
+  "repository": "git+https://github.com/common-tater/wkwebview-webrtc-shim.git",
+  "keywords": [
+    "RTCPeerConnection",
+    "RTCDataChannel",
+    "shim",
+    "iOS"
+  ],
+  "author": "jesse.tane@gmail.com",
+  "license": "MIT"
+}
