@@ -225,10 +225,10 @@
 
   RTCDataChannelInit *config = [[RTCDataChannelInit alloc] init];
   NSDictionary * optional = params[@"optional"];
-  if (optional[@"ordered"]) config.isOrdered = optional[@"ordered"];
+  if (optional[@"ordered"]) config.isOrdered = [optional[@"ordered"] boolValue];
   if (optional[@"maxRetransmits"]) config.maxRetransmits = [optional[@"maxRetransmits"] longValue];
   if (optional[@"maxPacketLifeTime"]) config.maxRetransmitTimeMs = [optional[@"maxPacketLifeTime"] longValue];
-  if (optional[@"negotiated"]) config.isNegotiated = optional[@"negotiated"];
+  if (optional[@"negotiated"]) config.isNegotiated = [optional[@"negotiated"] boolValue];
   if (optional[@"protocol"]) config.protocol = optional[@"protocol"];
 
   RTCPeerConnection *connection = connections[params[@"id"]];
