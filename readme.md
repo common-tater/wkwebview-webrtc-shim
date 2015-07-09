@@ -27,3 +27,6 @@ Open test wrapper in xcode and run:
 ```
 $ open test/WKWebViewWebRTCShimTest.xcodeproj
 ```
+
+## License
+MIT
