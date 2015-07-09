@@ -223,8 +223,16 @@
   NSLog(@"RTCPeerConnection_createDataChannel: %@", params);
 #endif
 
+  RTCDataChannelInit *config = [[RTCDataChannelInit alloc] init];
+  NSDictionary * optional = params[@"optional"];
+  if (optional[@"ordered"]) config.isOrdered = optional[@"ordered"];
+  if (optional[@"maxRetransmits"]) config.maxRetransmits = [optional[@"maxRetransmits"] longValue];
+  if (optional[@"maxPacketLifeTime"]) config.maxRetransmitTimeMs = [optional[@"maxPacketLifeTime"] longValue];
+  if (optional[@"negotiated"]) config.isNegotiated = optional[@"negotiated"];
+  if (optional[@"protocol"]) config.protocol = optional[@"protocol"];
+
   RTCPeerConnection *connection = connections[params[@"id"]];
-  RTCDataChannel *channel = [connection createDataChannelWithLabel:params[@"label"] config:params[@"optional"]];
+  RTCDataChannel *channel = [connection createDataChannelWithLabel:params[@"label"] config:config];
 
   NSString *jsid = params[@"channel"];
   channels[jsid] = channel;
