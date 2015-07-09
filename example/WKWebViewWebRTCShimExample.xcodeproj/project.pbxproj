@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C22202F21B4E64D3002886C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22202F11B4E64D3002886C6 /* AppDelegate.swift */; };
+		C22202F41B4E64D3002886C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22202F31B4E64D3002886C6 /* ViewController.swift */; };
+		C22202F71B4E64D3002886C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22202F51B4E64D3002886C6 /* Main.storyboard */; };
+		C22202F91B4E64D3002886C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22202F81B4E64D3002886C6 /* Images.xcassets */; };
+		C22202FC1B4E64D3002886C6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22202FA1B4E64D3002886C6 /* LaunchScreen.xib */; };
+		C22203511B4E65E3002886C6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203401B4E65E3002886C6 /* CoreVideo.framework */; };
+		C22203521B4E65E3002886C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203411B4E65E3002886C6 /* Security.framework */; };
+		C22203531B4E65E3002886C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203421B4E65E3002886C6 /* CoreGraphics.framework */; };
+		C22203541B4E65E3002886C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203431B4E65E3002886C6 /* QuartzCore.framework */; };
+		C22203551B4E65E3002886C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203441B4E65E3002886C6 /* CoreMedia.framework */; };
+		C22203561B4E65E3002886C6 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203451B4E65E3002886C6 /* GLKit.framework */; };
+		C22203571B4E65E3002886C6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203461B4E65E3002886C6 /* OpenGLES.framework */; };
+		C22203581B4E65E3002886C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203471B4E65E3002886C6 /* AVFoundation.framework */; };
+		C22203591B4E65E3002886C6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203481B4E65E3002886C6 /* CoreAudio.framework */; };
+		C222035A1B4E65E3002886C6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203491B4E65E3002886C6 /* CFNetwork.framework */; };
+		C222035B1B4E65E3002886C6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034A1B4E65E3002886C6 /* libsqlite3.dylib */; };
+		C222035C1B4E65E3002886C6 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */; };
+		C222035D1B4E65E3002886C6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034C1B4E65E3002886C6 /* libicucore.dylib */; };
+		C222035E1B4E65E3002886C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */; };
+		C222035F1B4E65E3002886C6 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034E1B4E65E3002886C6 /* libc++.dylib */; };
+		C22203601B4E65E3002886C6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034F1B4E65E3002886C6 /* VideoToolbox.framework */; };
+		C22203611B4E65E3002886C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203501B4E65E3002886C6 /* AudioToolbox.framework */; };
+		C222038B1B4E6A40002886C6 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203811B4E6A40002886C6 /* libWebRTC.a */; };
+		C222038C1B4E6A40002886C6 /* WKWebViewWebRTCShim.js in Resources */ = {isa = PBXBuildFile; fileRef = C22203831B4E6A40002886C6 /* WKWebViewWebRTCShim.js */; };
+		C222038D1B4E6A40002886C6 /* WKWebViewWebRTCShim.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203841B4E6A40002886C6 /* WKWebViewWebRTCShim.m */; };
+		C222038E1B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203861B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m */; };
+		C222038F1B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203881B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m */; };
+		C22203901B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C222038A1B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C22202EC1B4E64D3002886C6 /* WKWebViewWebRTCShimExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKWebViewWebRTCShimExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22202F01B4E64D3002886C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C22202F11B4E64D3002886C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C22202F31B4E64D3002886C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C22202F61B4E64D3002886C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C22202F81B4E64D3002886C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C22202FB1B4E64D3002886C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C22203111B4E6532002886C6 /* ObjectiveCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCBridgingHeader.h; sourceTree = "<group>"; };
+		C22203401B4E65E3002886C6 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C22203411B4E65E3002886C6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C22203421B4E65E3002886C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C22203431B4E65E3002886C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C22203441B4E65E3002886C6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C22203451B4E65E3002886C6 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		C22203461B4E65E3002886C6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		C22203471B4E65E3002886C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C22203481B4E65E3002886C6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		C22203491B4E65E3002886C6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C222034A1B4E65E3002886C6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		C222034C1B4E65E3002886C6 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		C222034E1B4E65E3002886C6 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		C222034F1B4E65E3002886C6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		C22203501B4E65E3002886C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C22203651B4E6A40002886C6 /* RTCAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioSource.h; sourceTree = "<group>"; };
+		C22203661B4E6A40002886C6 /* RTCAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioTrack.h; sourceTree = "<group>"; };
+		C22203671B4E6A40002886C6 /* RTCAVFoundationVideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAVFoundationVideoSource.h; sourceTree = "<group>"; };
+		C22203681B4E6A40002886C6 /* RTCDataChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCDataChannel.h; sourceTree = "<group>"; };
+		C22203691B4E6A40002886C6 /* RTCEAGLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCEAGLVideoView.h; sourceTree = "<group>"; };
+		C222036A1B4E6A40002886C6 /* RTCI420Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCI420Frame.h; sourceTree = "<group>"; };
+		C222036B1B4E6A40002886C6 /* RTCICECandidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCICECandidate.h; sourceTree = "<group>"; };
+		C222036C1B4E6A40002886C6 /* RTCICEServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCICEServer.h; sourceTree = "<group>"; };
+		C222036D1B4E6A40002886C6 /* RTCMediaConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaConstraints.h; sourceTree = "<group>"; };
+		C222036E1B4E6A40002886C6 /* RTCMediaSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaSource.h; sourceTree = "<group>"; };
+		C222036F1B4E6A40002886C6 /* RTCMediaStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaStream.h; sourceTree = "<group>"; };
+		C22203701B4E6A40002886C6 /* RTCMediaStreamTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaStreamTrack.h; sourceTree = "<group>"; };
+		C22203711B4E6A40002886C6 /* RTCNSGLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCNSGLVideoView.h; sourceTree = "<group>"; };
+		C22203721B4E6A40002886C6 /* RTCOpenGLVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCOpenGLVideoRenderer.h; sourceTree = "<group>"; };
+		C22203731B4E6A40002886C6 /* RTCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPair.h; sourceTree = "<group>"; };
+		C22203741B4E6A40002886C6 /* RTCPeerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnection.h; sourceTree = "<group>"; };
+		C22203751B4E6A40002886C6 /* RTCPeerConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionDelegate.h; sourceTree = "<group>"; };
+		C22203761B4E6A40002886C6 /* RTCPeerConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionFactory.h; sourceTree = "<group>"; };
+		C22203771B4E6A40002886C6 /* RTCPeerConnectionInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionInterface.h; sourceTree = "<group>"; };
+		C22203781B4E6A40002886C6 /* RTCSessionDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCSessionDescription.h; sourceTree = "<group>"; };
+		C22203791B4E6A40002886C6 /* RTCSessionDescriptionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCSessionDescriptionDelegate.h; sourceTree = "<group>"; };
+		C222037A1B4E6A40002886C6 /* RTCStatsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCStatsDelegate.h; sourceTree = "<group>"; };
+		C222037B1B4E6A40002886C6 /* RTCStatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCStatsReport.h; sourceTree = "<group>"; };
+		C222037C1B4E6A40002886C6 /* RTCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCTypes.h; sourceTree = "<group>"; };
+		C222037D1B4E6A40002886C6 /* RTCVideoCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoCapturer.h; sourceTree = "<group>"; };
+		C222037E1B4E6A40002886C6 /* RTCVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoRenderer.h; sourceTree = "<group>"; };
+		C222037F1B4E6A40002886C6 /* RTCVideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoSource.h; sourceTree = "<group>"; };
+		C22203801B4E6A40002886C6 /* RTCVideoTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoTrack.h; sourceTree = "<group>"; };
+		C22203811B4E6A40002886C6 /* libWebRTC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWebRTC.a; sourceTree = "<group>"; };
+		C22203821B4E6A40002886C6 /* WKWebViewWebRTCShim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewWebRTCShim.h; sourceTree = "<group>"; };
+		C22203831B4E6A40002886C6 /* WKWebViewWebRTCShim.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = WKWebViewWebRTCShim.js; sourceTree = "<group>"; };
+		C22203841B4E6A40002886C6 /* WKWebViewWebRTCShim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShim.m; sourceTree = "<group>"; };
+		C22203851B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewWebRTCShimJavaScriptID.h; sourceTree = "<group>"; };
+		C22203861B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShimJavaScriptID.m; sourceTree = "<group>"; };
+		C22203871B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.h; sourceTree = "<group>"; };
+		C22203881B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m; sourceTree = "<group>"; };
+		C22203891B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.h; sourceTree = "<group>"; };
+		C222038A1B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C22202E91B4E64D3002886C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C222035C1B4E65E3002886C6 /* libstdc++.6.dylib in Frameworks */,
+				C222035D1B4E65E3002886C6 /* libicucore.dylib in Frameworks */,
+				C22203551B4E65E3002886C6 /* CoreMedia.framework in Frameworks */,
+				C222035E1B4E65E3002886C6 /* libz.1.2.5.dylib in Frameworks */,
+				C222035A1B4E65E3002886C6 /* CFNetwork.framework in Frameworks */,
+				C22203611B4E65E3002886C6 /* AudioToolbox.framework in Frameworks */,
+				C22203541B4E65E3002886C6 /* QuartzCore.framework in Frameworks */,
+				C22203581B4E65E3002886C6 /* AVFoundation.framework in Frameworks */,
+				C22203531B4E65E3002886C6 /* CoreGraphics.framework in Frameworks */,
+				C22203571B4E65E3002886C6 /* OpenGLES.framework in Frameworks */,
+				C222038B1B4E6A40002886C6 /* libWebRTC.a in Frameworks */,
+				C22203561B4E65E3002886C6 /* GLKit.framework in Frameworks */,
+				C22203521B4E65E3002886C6 /* Security.framework in Frameworks */,
+				C22203591B4E65E3002886C6 /* CoreAudio.framework in Frameworks */,
+				C22203601B4E65E3002886C6 /* VideoToolbox.framework in Frameworks */,
+				C222035B1B4E65E3002886C6 /* libsqlite3.dylib in Frameworks */,
+				C222035F1B4E65E3002886C6 /* libc++.dylib in Frameworks */,
+				C22203511B4E65E3002886C6 /* CoreVideo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C22202E31B4E64D3002886C6 = {
+			isa = PBXGroup;
+			children = (
+				C22202EE1B4E64D3002886C6 /* WKWebViewWebRTCShimExample */,
+				C22202ED1B4E64D3002886C6 /* Products */,
+				C22203621B4E65F5002886C6 /* Frameworks */,
+				C22203631B4E6A40002886C6 /* WKWebViewWebRTCShim */,
+			);
+			sourceTree = "<group>";
+		};
+		C22202ED1B4E64D3002886C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C22202EC1B4E64D3002886C6 /* WKWebViewWebRTCShimExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C22202EE1B4E64D3002886C6 /* WKWebViewWebRTCShimExample */ = {
+			isa = PBXGroup;
+			children = (
+				C22202F11B4E64D3002886C6 /* AppDelegate.swift */,
+				C22202F31B4E64D3002886C6 /* ViewController.swift */,
+				C22202F51B4E64D3002886C6 /* Main.storyboard */,
+				C22202F81B4E64D3002886C6 /* Images.xcassets */,
+				C22202FA1B4E64D3002886C6 /* LaunchScreen.xib */,
+				C22202EF1B4E64D3002886C6 /* Supporting Files */,
+				C22203111B4E6532002886C6 /* ObjectiveCBridgingHeader.h */,
+			);
+			path = WKWebViewWebRTCShimExample;
+			sourceTree = "<group>";
+		};
+		C22202EF1B4E64D3002886C6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C22202F01B4E64D3002886C6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C22203621B4E65F5002886C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C22203401B4E65E3002886C6 /* CoreVideo.framework */,
+				C22203411B4E65E3002886C6 /* Security.framework */,
+				C22203421B4E65E3002886C6 /* CoreGraphics.framework */,
+				C22203431B4E65E3002886C6 /* QuartzCore.framework */,
+				C22203441B4E65E3002886C6 /* CoreMedia.framework */,
+				C22203451B4E65E3002886C6 /* GLKit.framework */,
+				C22203461B4E65E3002886C6 /* OpenGLES.framework */,
+				C22203471B4E65E3002886C6 /* AVFoundation.framework */,
+				C22203481B4E65E3002886C6 /* CoreAudio.framework */,
+				C22203491B4E65E3002886C6 /* CFNetwork.framework */,
+				C222034A1B4E65E3002886C6 /* libsqlite3.dylib */,
+				C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */,
+				C222034C1B4E65E3002886C6 /* libicucore.dylib */,
+				C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */,
+				C222034E1B4E65E3002886C6 /* libc++.dylib */,
+				C222034F1B4E65E3002886C6 /* VideoToolbox.framework */,
+				C22203501B4E65E3002886C6 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C22203631B4E6A40002886C6 /* WKWebViewWebRTCShim */ = {
+			isa = PBXGroup;
+			children = (
+				C22203641B4E6A40002886C6 /* Headers */,
+				C22203811B4E6A40002886C6 /* libWebRTC.a */,
+				C22203821B4E6A40002886C6 /* WKWebViewWebRTCShim.h */,
+				C22203831B4E6A40002886C6 /* WKWebViewWebRTCShim.js */,
+				C22203841B4E6A40002886C6 /* WKWebViewWebRTCShim.m */,
+				C22203851B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.h */,
+				C22203861B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m */,
+				C22203871B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.h */,
+				C22203881B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m */,
+				C22203891B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.h */,
+				C222038A1B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m */,
+			);
+			name = WKWebViewWebRTCShim;
+			path = ../WKWebViewWebRTCShim;
+			sourceTree = "<group>";
+		};
+		C22203641B4E6A40002886C6 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				C22203651B4E6A40002886C6 /* RTCAudioSource.h */,
+				C22203661B4E6A40002886C6 /* RTCAudioTrack.h */,
+				C22203671B4E6A40002886C6 /* RTCAVFoundationVideoSource.h */,
+				C22203681B4E6A40002886C6 /* RTCDataChannel.h */,
+				C22203691B4E6A40002886C6 /* RTCEAGLVideoView.h */,
+				C222036A1B4E6A40002886C6 /* RTCI420Frame.h */,
+				C222036B1B4E6A40002886C6 /* RTCICECandidate.h */,
+				C222036C1B4E6A40002886C6 /* RTCICEServer.h */,
+				C222036D1B4E6A40002886C6 /* RTCMediaConstraints.h */,
+				C222036E1B4E6A40002886C6 /* RTCMediaSource.h */,
+				C222036F1B4E6A40002886C6 /* RTCMediaStream.h */,
+				C22203701B4E6A40002886C6 /* RTCMediaStreamTrack.h */,
+				C22203711B4E6A40002886C6 /* RTCNSGLVideoView.h */,
+				C22203721B4E6A40002886C6 /* RTCOpenGLVideoRenderer.h */,
+				C22203731B4E6A40002886C6 /* RTCPair.h */,
+				C22203741B4E6A40002886C6 /* RTCPeerConnection.h */,
+				C22203751B4E6A40002886C6 /* RTCPeerConnectionDelegate.h */,
+				C22203761B4E6A40002886C6 /* RTCPeerConnectionFactory.h */,
+				C22203771B4E6A40002886C6 /* RTCPeerConnectionInterface.h */,
+				C22203781B4E6A40002886C6 /* RTCSessionDescription.h */,
+				C22203791B4E6A40002886C6 /* RTCSessionDescriptionDelegate.h */,
+				C222037A1B4E6A40002886C6 /* RTCStatsDelegate.h */,
+				C222037B1B4E6A40002886C6 /* RTCStatsReport.h */,
+				C222037C1B4E6A40002886C6 /* RTCTypes.h */,
+				C222037D1B4E6A40002886C6 /* RTCVideoCapturer.h */,
+				C222037E1B4E6A40002886C6 /* RTCVideoRenderer.h */,
+				C222037F1B4E6A40002886C6 /* RTCVideoSource.h */,
+				C22203801B4E6A40002886C6 /* RTCVideoTrack.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C22202EB1B4E64D3002886C6 /* WKWebViewWebRTCShimExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C222030B1B4E64D3002886C6 /* Build configuration list for PBXNativeTarget "WKWebViewWebRTCShimExample" */;
+			buildPhases = (
+				C22202E81B4E64D3002886C6 /* Sources */,
+				C22202E91B4E64D3002886C6 /* Frameworks */,
+				C22202EA1B4E64D3002886C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WKWebViewWebRTCShimExample;
+			productName = WKWebViewWebRTCShimExample;
+			productReference = C22202EC1B4E64D3002886C6 /* WKWebViewWebRTCShimExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C22202E41B4E64D3002886C6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Common Tater LLC";
+				TargetAttributes = {
+					C22202EB1B4E64D3002886C6 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = C22202E71B4E64D3002886C6 /* Build configuration list for PBXProject "WKWebViewWebRTCShimExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C22202E31B4E64D3002886C6;
+			productRefGroup = C22202ED1B4E64D3002886C6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C22202EB1B4E64D3002886C6 /* WKWebViewWebRTCShimExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C22202EA1B4E64D3002886C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C222038C1B4E6A40002886C6 /* WKWebViewWebRTCShim.js in Resources */,
+				C22202F71B4E64D3002886C6 /* Main.storyboard in Resources */,
+				C22202FC1B4E64D3002886C6 /* LaunchScreen.xib in Resources */,
+				C22202F91B4E64D3002886C6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C22202E81B4E64D3002886C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C22203901B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m in Sources */,
+				C22202F41B4E64D3002886C6 /* ViewController.swift in Sources */,
+				C222038E1B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m in Sources */,
+				C22202F21B4E64D3002886C6 /* AppDelegate.swift in Sources */,
+				C222038D1B4E6A40002886C6 /* WKWebViewWebRTCShim.m in Sources */,
+				C222038F1B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C22202F51B4E64D3002886C6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C22202F61B4E64D3002886C6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C22202FA1B4E64D3002886C6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C22202FB1B4E64D3002886C6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C22203091B4E64D3002886C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C222030A1B4E64D3002886C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C222030C1B4E64D3002886C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WKWebViewWebRTCShimExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jessetane/Source/wkwebview-webrtc-shim/WKWebViewWebRTCShim",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = WKWebViewWebRTCShimExample/ObjectiveCBridgingHeader.h;
+			};
+			name = Debug;
+		};
+		C222030D1B4E64D3002886C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WKWebViewWebRTCShimExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jessetane/Source/wkwebview-webrtc-shim/WKWebViewWebRTCShim",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = WKWebViewWebRTCShimExample/ObjectiveCBridgingHeader.h;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C22202E71B4E64D3002886C6 /* Build configuration list for PBXProject "WKWebViewWebRTCShimExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22203091B4E64D3002886C6 /* Debug */,
+				C222030A1B4E64D3002886C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C222030B1B4E64D3002886C6 /* Build configuration list for PBXNativeTarget "WKWebViewWebRTCShimExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C222030C1B4E64D3002886C6 /* Debug */,
+				C222030D1B4E64D3002886C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C22202E41B4E64D3002886C6 /* Project object */;
+}
