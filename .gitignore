@@ -2,3 +2,4 @@
 libWebRTC.a
 /build
 /WKWebViewWebRTCShim/Headers
+node_modules
