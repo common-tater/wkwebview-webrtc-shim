@@ -4,11 +4,21 @@
   "description": "RTCPeerConnection and RTCDataChannel shim for iOS",
   "repository": "git+https://github.com/common-tater/wkwebview-webrtc-shim.git",
   "keywords": [
-    "RTCPeerConnection",
     "RTCDataChannel",
-    "shim",
-    "iOS"
+    "RTCPeerConnection",
+    "iOS",
+    "shim"
   ],
+  "devDependencies": {
+    "concat-stream": "1.5.0",
+    "simple-peer": "5.11.3",
+    "string-to-stream": "1.0.1",
+    "tape": "4.0.0",
+    "zuul": "3.2.0"
+  },
+  "scripts": {
+    "test": "zuul --ui tape --local 7357 -- node_modules/simple-peer/test/*.js"
+  },
   "author": "jesse.tane@gmail.com",
   "license": "MIT"
 }
