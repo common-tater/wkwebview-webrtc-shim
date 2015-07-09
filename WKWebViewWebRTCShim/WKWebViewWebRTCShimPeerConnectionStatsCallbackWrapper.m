@@ -23,10 +23,27 @@
 
 - (void)peerConnection:(RTCPeerConnection*)peerConnection
            didGetStats:(NSArray*)stats {
-  NSString *js = [NSString stringWithFormat:@"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () {})",
+  NSMutableArray *json = [[NSMutableArray alloc] init];
+
+  for (RTCStatsReport *report in stats) {
+    NSMutableDictionary *values = [[NSMutableDictionary alloc] init];
+    for (RTCPair *pair in report.values) {
+      [values setObject:pair.value forKey:pair.key];
+    }
+    [json addObject:@{
+      @"id": report.reportId,
+      @"type": report.type,
+      @"timestamp": @(report.timestamp),
+      @"values": values
+    }];
+  }
+
+  NSString* jsonString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:0 error:nil] encoding:NSUTF8StringEncoding];
+  NSString *js = [NSString stringWithFormat:@"RTCPeerConnection._executeCallback('%@', '%@', '%@', function () { return [ JSON.parse('%@') ] })",
                   peerConnection.jsid,
                   onSuccess,
-                  onError];
+                  onError,
+                  jsonString];
 
 #ifdef WKWEBVIEW_WEBRTC_SHIM_DEBUG
   NSLog(@"RTCPeerConnection_getStats: %@", stats);

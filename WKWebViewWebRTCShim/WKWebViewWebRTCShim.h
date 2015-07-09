@@ -20,6 +20,8 @@
 #import "RTCDataChannel.h"
 #import "RTCSessionDescriptionDelegate.h"
 #import "RTCStatsDelegate.h"
+#import "RTCStatsReport.h"
+#import "RTCPair.h"
 
 @class WKWebViewWebRTCShim;
 @class RTCPeerConnectionFactory;

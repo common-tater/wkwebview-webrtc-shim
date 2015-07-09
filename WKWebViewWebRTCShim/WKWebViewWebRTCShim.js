@@ -99,8 +99,7 @@
       var reports = []
 
       for (var i in reportsData) {
-        var reportData = reportsData[i]
-        var report = new RTCStatsReport()
+        reports.push(new RTCStatsReport(reportsData[i]))
       }
 
       cb({ result: function () { return reports } })
@@ -192,7 +191,20 @@
     window.webkit.messageHandlers[name].postMessage(params)
   }
 
-  function RTCStatsReport () {}
+  function RTCStatsReport (reportData) {
+    this.id = reportData.id
+    this.type = reportData.type
+    this.timestamp = new Date(reportData.timestamp)
+    this._values = reportData.values
+  }
+
+  RTCStatsReport.prototype.names = function () {
+    return Object.keys(this._values)
+  }
+
+  RTCStatsReport.prototype.stat = function (key) {
+    return this._values[key]
+  }
 
   // ipc helpers
 
