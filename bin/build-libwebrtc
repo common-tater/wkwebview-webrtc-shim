@@ -82,8 +82,10 @@ fi
 
 cd src
 
-git checkout master
-git pull origin master
+if ! git checkout 44; then
+  git fetch origin
+  git checkout -b 44 refs/remotes/branch-heads/44
+fi
 
 set -e
 
