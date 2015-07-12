@@ -12,29 +12,17 @@
 		C22202F71B4E64D3002886C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22202F51B4E64D3002886C6 /* Main.storyboard */; };
 		C22202F91B4E64D3002886C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22202F81B4E64D3002886C6 /* Images.xcassets */; };
 		C22202FC1B4E64D3002886C6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22202FA1B4E64D3002886C6 /* LaunchScreen.xib */; };
-		C22203511B4E65E3002886C6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203401B4E65E3002886C6 /* CoreVideo.framework */; };
-		C22203521B4E65E3002886C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203411B4E65E3002886C6 /* Security.framework */; };
-		C22203531B4E65E3002886C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203421B4E65E3002886C6 /* CoreGraphics.framework */; };
-		C22203541B4E65E3002886C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203431B4E65E3002886C6 /* QuartzCore.framework */; };
-		C22203551B4E65E3002886C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203441B4E65E3002886C6 /* CoreMedia.framework */; };
-		C22203561B4E65E3002886C6 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203451B4E65E3002886C6 /* GLKit.framework */; };
-		C22203571B4E65E3002886C6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203461B4E65E3002886C6 /* OpenGLES.framework */; };
-		C22203581B4E65E3002886C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203471B4E65E3002886C6 /* AVFoundation.framework */; };
-		C22203591B4E65E3002886C6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203481B4E65E3002886C6 /* CoreAudio.framework */; };
-		C222035A1B4E65E3002886C6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203491B4E65E3002886C6 /* CFNetwork.framework */; };
-		C222035B1B4E65E3002886C6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034A1B4E65E3002886C6 /* libsqlite3.dylib */; };
-		C222035C1B4E65E3002886C6 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */; };
-		C222035D1B4E65E3002886C6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034C1B4E65E3002886C6 /* libicucore.dylib */; };
 		C222035E1B4E65E3002886C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */; };
 		C222035F1B4E65E3002886C6 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034E1B4E65E3002886C6 /* libc++.dylib */; };
-		C22203601B4E65E3002886C6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C222034F1B4E65E3002886C6 /* VideoToolbox.framework */; };
-		C22203611B4E65E3002886C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203501B4E65E3002886C6 /* AudioToolbox.framework */; };
 		C222038B1B4E6A40002886C6 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C22203811B4E6A40002886C6 /* libWebRTC.a */; };
 		C222038C1B4E6A40002886C6 /* WKWebViewWebRTCShim.js in Resources */ = {isa = PBXBuildFile; fileRef = C22203831B4E6A40002886C6 /* WKWebViewWebRTCShim.js */; };
 		C222038D1B4E6A40002886C6 /* WKWebViewWebRTCShim.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203841B4E6A40002886C6 /* WKWebViewWebRTCShim.m */; };
 		C222038E1B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203861B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m */; };
 		C222038F1B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C22203881B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m */; };
 		C22203901B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C222038A1B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m */; };
+		C23BFAA21B51FD8100EC0C83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23BFAA11B51FD8100EC0C83 /* AVFoundation.framework */; };
+		C23BFAA61B51FDA100EC0C83 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23BFAA51B51FDA100EC0C83 /* AudioToolbox.framework */; };
+		C23BFAA71B51FDAE00EC0C83 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23BFAA31B51FD9100EC0C83 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,23 +34,8 @@
 		C22202F81B4E64D3002886C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C22202FB1B4E64D3002886C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C22203111B4E6532002886C6 /* ObjectiveCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCBridgingHeader.h; sourceTree = "<group>"; };
-		C22203401B4E65E3002886C6 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		C22203411B4E65E3002886C6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C22203421B4E65E3002886C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C22203431B4E65E3002886C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C22203441B4E65E3002886C6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		C22203451B4E65E3002886C6 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		C22203461B4E65E3002886C6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		C22203471B4E65E3002886C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		C22203481B4E65E3002886C6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		C22203491B4E65E3002886C6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		C222034A1B4E65E3002886C6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
-		C222034C1B4E65E3002886C6 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		C222034E1B4E65E3002886C6 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		C222034F1B4E65E3002886C6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		C22203501B4E65E3002886C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C22203651B4E6A40002886C6 /* RTCAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioSource.h; sourceTree = "<group>"; };
 		C22203661B4E6A40002886C6 /* RTCAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioTrack.h; sourceTree = "<group>"; };
 		C22203671B4E6A40002886C6 /* RTCAVFoundationVideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAVFoundationVideoSource.h; sourceTree = "<group>"; };
@@ -101,6 +74,9 @@
 		C22203881B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m; sourceTree = "<group>"; };
 		C22203891B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.h; sourceTree = "<group>"; };
 		C222038A1B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m; sourceTree = "<group>"; };
+		C23BFAA11B51FD8100EC0C83 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C23BFAA31B51FD9100EC0C83 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C23BFAA51B51FDA100EC0C83 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,24 +84,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C222035C1B4E65E3002886C6 /* libstdc++.6.dylib in Frameworks */,
-				C222035D1B4E65E3002886C6 /* libicucore.dylib in Frameworks */,
-				C22203551B4E65E3002886C6 /* CoreMedia.framework in Frameworks */,
+				C23BFAA71B51FDAE00EC0C83 /* CoreMedia.framework in Frameworks */,
+				C23BFAA61B51FDA100EC0C83 /* AudioToolbox.framework in Frameworks */,
+				C23BFAA21B51FD8100EC0C83 /* AVFoundation.framework in Frameworks */,
 				C222035E1B4E65E3002886C6 /* libz.1.2.5.dylib in Frameworks */,
-				C222035A1B4E65E3002886C6 /* CFNetwork.framework in Frameworks */,
-				C22203611B4E65E3002886C6 /* AudioToolbox.framework in Frameworks */,
-				C22203541B4E65E3002886C6 /* QuartzCore.framework in Frameworks */,
-				C22203581B4E65E3002886C6 /* AVFoundation.framework in Frameworks */,
-				C22203531B4E65E3002886C6 /* CoreGraphics.framework in Frameworks */,
-				C22203571B4E65E3002886C6 /* OpenGLES.framework in Frameworks */,
-				C222038B1B4E6A40002886C6 /* libWebRTC.a in Frameworks */,
-				C22203561B4E65E3002886C6 /* GLKit.framework in Frameworks */,
-				C22203521B4E65E3002886C6 /* Security.framework in Frameworks */,
-				C22203591B4E65E3002886C6 /* CoreAudio.framework in Frameworks */,
-				C22203601B4E65E3002886C6 /* VideoToolbox.framework in Frameworks */,
-				C222035B1B4E65E3002886C6 /* libsqlite3.dylib in Frameworks */,
 				C222035F1B4E65E3002886C6 /* libc++.dylib in Frameworks */,
-				C22203511B4E65E3002886C6 /* CoreVideo.framework in Frameworks */,
+				C222038B1B4E6A40002886C6 /* libWebRTC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,23 +139,11 @@
 		C22203621B4E65F5002886C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C22203401B4E65E3002886C6 /* CoreVideo.framework */,
-				C22203411B4E65E3002886C6 /* Security.framework */,
-				C22203421B4E65E3002886C6 /* CoreGraphics.framework */,
-				C22203431B4E65E3002886C6 /* QuartzCore.framework */,
-				C22203441B4E65E3002886C6 /* CoreMedia.framework */,
-				C22203451B4E65E3002886C6 /* GLKit.framework */,
-				C22203461B4E65E3002886C6 /* OpenGLES.framework */,
-				C22203471B4E65E3002886C6 /* AVFoundation.framework */,
-				C22203481B4E65E3002886C6 /* CoreAudio.framework */,
-				C22203491B4E65E3002886C6 /* CFNetwork.framework */,
-				C222034A1B4E65E3002886C6 /* libsqlite3.dylib */,
-				C222034B1B4E65E3002886C6 /* libstdc++.6.dylib */,
-				C222034C1B4E65E3002886C6 /* libicucore.dylib */,
+				C23BFAA51B51FDA100EC0C83 /* AudioToolbox.framework */,
+				C23BFAA31B51FD9100EC0C83 /* CoreMedia.framework */,
+				C23BFAA11B51FD8100EC0C83 /* AVFoundation.framework */,
 				C222034D1B4E65E3002886C6 /* libz.1.2.5.dylib */,
 				C222034E1B4E65E3002886C6 /* libc++.dylib */,
-				C222034F1B4E65E3002886C6 /* VideoToolbox.framework */,
-				C22203501B4E65E3002886C6 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,12 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22203901B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m in Sources */,
-				C22202F41B4E64D3002886C6 /* ViewController.swift in Sources */,
-				C222038E1B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m in Sources */,
-				C22202F21B4E64D3002886C6 /* AppDelegate.swift in Sources */,
 				C222038D1B4E6A40002886C6 /* WKWebViewWebRTCShim.m in Sources */,
+				C222038E1B4E6A40002886C6 /* WKWebViewWebRTCShimJavaScriptID.m in Sources */,
+				C22203901B4E6A40002886C6 /* WKWebViewWebRTCShimSessionDescriptionCallbackWrapper.m in Sources */,
 				C222038F1B4E6A40002886C6 /* WKWebViewWebRTCShimPeerConnectionStatsCallbackWrapper.m in Sources */,
+				C22202F21B4E64D3002886C6 /* AppDelegate.swift in Sources */,
+				C22202F41B4E64D3002886C6 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

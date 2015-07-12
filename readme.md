@@ -15,23 +15,11 @@ $ bin/build-libwebrtc
 
 Then drag the folder called "WKWebViewWebRTCShim" into your xcode project and import these frameworks:
 
-- CFNetwork.framework
-- Security.framework
-- CoreGraphics.framework
-- QuartzCore.framework
-- GLKit.framework
-- OpenGLES.framework
-- CoreMedia.framework
-- AVFoundation.framework
-- CoreAudio.framework
-- AudioToolbox.framework
-- CoreVideo.framework
-- VideoToolbox.framework
-- libsqlite3.dylib
-- libstdc++.6.dylib
-- libicucore.dylib
-- libz.1.2.5.dylib
 - libc++.dylib
+- libz.1.2.5.dylib
+- AVFoundation.framework
+- AudioToolbox.framework
+- CoreMedia.framework
 
 ## Example
 This code shows how to create and shim a WKWebView.
