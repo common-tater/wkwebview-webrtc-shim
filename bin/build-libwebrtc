@@ -65,7 +65,7 @@ combine () {
     out_ios_arm64/Release-iphoneos/libWebRTC-ios-min.a\
       -output ../../WKWebViewWebRTCShim/libWebRTC.a
 
-  cp -R talk/app/webrtc/objc/public ../../WKWebViewWebRTCShim/Headers
+  cp -R talk/app/webrtc/objc/public/ ../../WKWebViewWebRTCShim/Headers
 }
 
 cd "$(dirname "$BASH_SOURCE")"/..
