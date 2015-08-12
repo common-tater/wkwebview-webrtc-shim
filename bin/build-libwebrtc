@@ -85,6 +85,8 @@ cd src
 if ! git checkout 44; then
   git fetch origin
   git checkout -b 44 refs/remotes/branch-heads/44
+  git cherry-pick f421bdc # fixes a crash part 1
+  git cherry-pick b19eba3 # fixes a crash part 2
 fi
 
 set -e
