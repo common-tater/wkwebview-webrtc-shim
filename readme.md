@@ -22,7 +22,7 @@ Then drag the folder called "WKWebViewWebRTCShim" into your xcode project and im
 - CoreMedia.framework
 
 ## Example
-This code shows how to create and shim a WKWebView.
+This code shows how to create and shim a WKWebView in Swift:
 
 ``` swift
 var configuration = WKWebViewConfiguration()
