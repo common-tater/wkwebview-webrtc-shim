@@ -82,12 +82,23 @@ fi
 
 cd src
 
-if ! git checkout 44; then
+releaseBranch="44"
+releaseBranchTip="3bd65e10979dd660488fe5a855516cb6e03bb80c"
+
+if ! git checkout "$releaseBranch"; then
   git fetch origin
-  git checkout -b 44 refs/remotes/branch-heads/44
-  git cherry-pick f421bdc # fixes a crash part 1
-  git cherry-pick b19eba3 # fixes a crash part 2
+  git checkout -b "$releaseBranch" refs/remotes/branch-heads/"$releaseBranch"
+else
+  git reset --hard "$releaseBranchTip"
 fi
+
+# fixes a crash part 1
+# https://chromium.googlesource.com/external/webrtc/+/f421bdc68dbf8ab456d36909185b6b2a8935bc64
+git cherry-pick "f421bdc68dbf8ab456d36909185b6b2a8935bc64"
+
+# fixes a crash part 2
+# https://chromium.googlesource.com/external/webrtc/+/b19eba3d4bbc70ece91d524e21e2e9d4253ff7a9
+git cherry-pick "b19eba3d4bbc70ece91d524e21e2e9d4253ff7a9"
 
 set -e
 
