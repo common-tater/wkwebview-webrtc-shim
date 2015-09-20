@@ -91,8 +91,10 @@
   void (*func)(id, SEL, NSDictionary *) = (void *)imp;
   func(self, selector, params);
   
-  // lame hack to fix over-retained message.body
-  CFRelease((__bridge CFTypeRef) params);
+  // lame hack to fix over-retained message.body (< iOS9 only)
+  if (NSFoundationVersionNumber < 1240.100000) {
+    CFRelease((__bridge CFTypeRef) params);
+  }
 }
 
 - (RTCMediaConstraints*)defaultConstraints {
