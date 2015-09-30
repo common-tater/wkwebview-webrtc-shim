@@ -68,7 +68,7 @@ combine () {
   cp -R talk/app/webrtc/objc/public/ ../../WKWebViewWebRTCShim/Headers
 }
 
-if ! which gclients; then
+if ! which gclient; then
   echo "please install depot_tools first" >&2
   echo "https://www.chromium.org/developers/how-tos/install-depot-tools" >&2
   exit 1
